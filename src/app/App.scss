@@ -1,0 +1,33 @@
+body {
+  background-color: #f5f5f5;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 3.5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #afafaf;
+  border-radius: 4px;
+}
+
+.page-wrapper {
+  width: 100%;
+  padding: 20px;
+  &__products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
