@@ -1,0 +1,184 @@
+@use 'src/app/App';
+.pupup{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(227, 227, 227, 0.45);
+
+  justify-content: center;
+  align-items: center;
+  transition: .2s linear ease;
+
+  .products-modal{
+    position: relative;
+
+    width: 33%;
+    height: 50%;
+    max-height: 700px;
+
+    border-radius: 33px;
+    perspective: 1000px;
+    transition: .5s linear all;
+
+   .front, .back{
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      transition: 1s;
+
+      backface-visibility: hidden;
+    }
+
+    .back{
+      transform: rotateY(180deg);
+    }
+
+  }
+
+  .products-modal.meat{
+    background-color: App.$meat;
+  }
+  .products-modal.dairy{
+    background-color: App.$dairy;
+  }
+  .products-modal.vegetable{
+    background-color: App.$vegetable;
+  }
+  .products-modal.fruit{
+    background-color: App.$fruit;
+  }
+  .products-modal.sweets{
+    background-color: App.$sweets;
+  }
+  .products-modal.fastfood{
+    background-color: App.$fastfood;
+  }
+  .products-modal.bakery{
+    background-color: App.$bakery;
+  }
+  .products-modal.different{
+    .front, .back{
+      background-color:  App.$different;
+    }
+  }
+
+  .product-svg.products-modal-svg{
+    height: 250px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .ant-input-number-handler-wrap{
+    right: 5px;
+  }
+  .ant-input-number{
+    margin: 10px 0;
+    width: 40%;
+  }
+  .ant-input{
+    width: 70%;
+    margin: 10px;
+  }
+  .ant-input-number-input{
+    font-size: 20px;
+    text-align: center;
+  }
+}
+
+.pupup.active{
+  display: flex;
+  .products-modal{
+    .front {transform: rotateY(180deg);}
+    .back {transform: rotateY(360deg);}
+  }
+}
+
+
+
+
+
+
+@media (max-height: 810px) and (orientation: landscape){
+  .pupup.active{
+    .products-modal{
+      width: 30%;
+      height: 50%;
+    }
+    .product-svg.products-modal-svg{
+      height: 150px;
+      padding: 10px;
+    }
+  }
+}
+@media (max-height: 450px) and (orientation: landscape){
+  .pupup.active{
+    .products-modal{
+      width: 30%;
+      height: 70%;
+    }
+  }
+}
+@media (max-height: 322px) and (orientation: landscape){
+  .pupup.active{
+    .products-modal{
+      width: 30%;
+      height: 90%;
+    }
+    .product-svg.products-modal-svg{
+      height: 150px !important;
+    }
+  }
+}
+@media (max-width: 768px){
+  .pupup.active{
+    .products-modal{
+      width: 50%;
+    }
+    .product-svg.products-modal-svg{
+      height: 250px;
+      padding: 10px;
+    }
+  }
+
+}
+@media (max-width: 500px){
+  .pupup.active{
+    .products-modal{
+      width: 60%;
+    }
+    .product-svg.products-modal-svg{
+      height: 250px;
+      padding: 10px;
+    }
+  }
+}
+@media (max-width: 330px){
+  .pupup.active{
+    .products-modal{
+      width: 60%;
+    }
+    .product-svg.products-modal-svg{
+      height: 130px;
+      padding: 10px;
+    }
+  }
+
+}
+
+
+
+
+
+
+

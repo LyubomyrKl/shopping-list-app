@@ -1,12 +1,14 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+
 interface navInitialState{
     activePage: string,
     menuActiveStatus: boolean
 }
-const initialState = {
+
+const initialState : navInitialState = {
     activePage: 'Shopping list',
     menuActiveStatus: false,
-} as navInitialState
+}
 
 const navbarSlice = createSlice({
     name:"navbar",

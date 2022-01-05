@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
-import {useDispatch, useSelector} from "react-redux";
 
 import cn from "classnames";
 import SidebarData  from "../../resourse/SideBarData";
@@ -10,6 +9,7 @@ import SidebarData  from "../../resourse/SideBarData";
 import {changeActiveStatus, changeActivePage} from "../../slices/navbarSlice";
 
 import './navBar.scss'
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 
 
 interface navbarProps{
@@ -17,12 +17,10 @@ interface navbarProps{
 }
 
 const NavBar = (props: navbarProps) => {
-    const dispatch = useDispatch()
+
+    const dispatch = useAppDispatch()
     const toggleSideBar = () => dispatch(changeActiveStatus());
-
-    //@ts-ignore
-    const sidebar = useSelector( state => state.navbar.menuActiveStatus)
-
+    const sidebar = useAppSelector( state => state.navbar.menuActiveStatus)
     const menuItems = SidebarData.map((item)=>{
         return (
             <li key={nanoid()}

@@ -1,0 +1,72 @@
+@use 'src/app/App';
+
+.shopping-list{
+  background-color: App.$vegetable;
+  padding: 20px 0;
+  border-radius: 7px;
+  .shipping-list-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: App.$different;
+    width: 80%;
+    margin: 10px auto;
+    border-radius: 10px;
+  }
+  .shipping-list-item.meat{
+    background-color: App.$meat;
+  }
+  .shipping-list-item.dairy{
+    background-color: App.$dairy;
+  }
+  .shipping-list-item.vegetable{
+    background-color: App.$vegetable;
+  }
+  .shipping-list-item.fruit{
+    background-color: App.$fruit;
+  }
+  .shipping-list-item.sweets{
+    background-color: App.$sweets;
+  }
+  .shipping-list-item.fastfood{
+    background-color: App.$fastfood;
+  }
+  .shipping-list-item.bakery{
+    background-color: App.$bakery;
+  }
+
+  .info-item{
+    display: flex;
+    align-items: center;
+  }
+
+  .item-tools{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    margin-right: 20px;
+    & *{
+      transition: .2s linear;
+    }
+    & *:hover{
+      color: #1fa6cb;
+    }
+  }
+  .edit{
+    margin-right: 10px;
+  }
+
+  .product-svg {
+    margin: 0 30px;
+  }
+
+  .shopping-list-item_descr {
+    min-width: 50px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .count{
+    font-size: 30px;
+  }
+}

@@ -4,21 +4,16 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-
 } from "react-router-dom";
-
-
 import NavBar from "./components/navBar/navBar";
 import ShoppingList from "./pages/Shopping List/ShoppingList";
 import Products from "./pages/Products/Products";
 import Calories from "./pages/Calories/Calories";
-import {useSelector} from "react-redux";
+import { useAppSelector } from "./hooks/hooks";
 
 
 function App() {
-    //@ts-ignore
-    const page = useSelector(state => state.navbar.activePage)
-
+    const page = useAppSelector(state => state.navbar.activePage)
     return (
      <Router>
          <NavBar pageName={page}/>

@@ -1,3 +1,5 @@
+@use 'src/app/App';
+
 .product {
   display: flex;
   flex-direction: column;
@@ -8,6 +10,7 @@
   width: 100px;
   height: 100px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .product-svg{
@@ -52,85 +55,150 @@
 .ant-collapse > .ant-collapse-item {
   border: 0;
 }
+
 .ant-collapse > .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header{
   padding: 5px ;
 }
 
+.products-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg{
+
+    height: 12px;
+    transition: .4s all ease;
+  }
+}
+
+.products-header.active{
+  svg{
+    transform: rotate(-180deg);
+  }
+}
+
 .products-wrapper.meat {
   .product {
-    background-color: #fc125c;
+    background-color: App.$meat;
   }
   .ant-collapse-header{
-    background-color: #fc125c;
+    background-color: App.$meat;
   }
 }
 
 .products-wrapper.dairy {
   .product {
-    background-color: #fcd494;
+    background-color: App.$dairy;
   }
   .ant-collapse-header{
-    background-color: #fcd494;
+    background-color: App.$dairy;
   }
 }
 
 .products-wrapper.vegetable {
   .product {
-    background-color: #1fcb9a;
+    background-color: App.$vegetable;
   }
   .ant-collapse-header{
-    background-color: #1fcb9a;
+    background-color: App.$vegetable;
   }
 }
 
 .products-wrapper.fruit {
   .product {
-    background-color: #ffa100;
+    background-color: App.$fruit;
   }
   .ant-collapse-header{
-    background-color: #ffa100;
+    background-color: App.$fruit;
   }
 }
 
 .products-wrapper.bakery {
   .product {
-    background-color: #864124;
+    background-color: App.$bakery;
   }
   .ant-collapse-header{
-    background-color: #864124;
+    background-color: App.$bakery;
   }
 }
 
 .products-wrapper.sweets {
   .product {
-    background-color: #e396ff;
+    background-color: App.$sweets;
   }
   .ant-collapse-header{
-    background-color: #e396ff;
+    background-color: App.$sweets;
   }
 }
 
 .products-wrapper.fastfood {
   .product {
-    background-color: #ac0021;
+    background-color: App.$fastfood;
   }
   .ant-collapse-header{
-    background-color: #ac0021;
+    background-color: App.$fastfood;
   }
 }
 
 .products-wrapper.different {
   .product {
-    background-color: #704cb4;
+    background-color: App.$different;
   }
   .ant-collapse-header{
-    background-color: #704cb4;
+    background-color: App.$different;
   }
 }
 
+.icon-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* animation: bounce 0.3s 1 forwards; */
+  img {
+    width: 50px;
+    height: auto;
+  }
+  img:last-child {
+    position: absolute;
+  }
+}
+
+.icon-container:active {
+  animation: press 0.2s 1 linear;
+}
+
+.icon-container:active img:last-child {
+  animation: bounce 0.2s 1 linear;
+}
+
+@keyframes press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  50% {
+    transform: rotate(5deg) translate(20px, -50px);
+  }
+  to {
+    transform: scale(0.9) rotate(10deg) translate(50px, -80px);
+    opacity: 0;
+  }
+}
 
 @media (max-width: 1024px) {
-
   .products-wrapper {
     width: 100%;
 
@@ -138,7 +206,6 @@
 }
 
 @media (max-width: 768px) {
-
   .products-wrapper {
     margin: 0 0 20px;
     width: 350px;

@@ -1,3 +1,12 @@
+$meat:  #fc125c;
+$dairy: #fcd494;
+$vegetable: rgba(31, 203, 154, 0.61);
+$fruit: #ffa100;
+$bakery: #864124;
+$sweets: #e396ff;
+$fastfood: #ac0021;
+$different: #704cb4;
+
 body {
   background-color: #f5f5f5;
   color: white;
@@ -22,6 +31,7 @@ body {
   width: 100%;
   padding: 20px;
   &__products{
+    //background: url("../../public/assets/products/food-icon-seamless-pattern-with-green-outline-symbols-healthy-eating-or-organic-nutrition-concept-background-includes-fruit-vegetables-meat-bread-PWRYD7.jpg") repeat-y ;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -30,4 +40,6 @@ body {
     margin: 0 auto;
   }
 }
+
+
 
