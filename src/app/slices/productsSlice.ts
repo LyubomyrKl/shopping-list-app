@@ -1,11 +1,10 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IProductsInitialState} from "../models/IProductsInitialState";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IProductsInitialState } from "../models/IProductsInitialState";
 
-const initialState:IProductsInitialState = {
-    productsList: {},
-    activePopup: false,
+const initialState: IProductsInitialState = {
+    productsList: [],
     activeProductsWindow: 'question-mark.svg',
-    activeProductsLabel: 'Different'
+    activeProductsCategory: 'Different'
 }
 
 const productsSlice = createSlice({
@@ -15,21 +14,15 @@ const productsSlice = createSlice({
         fetchProducts: ( state, action:PayloadAction<any>  ) => {
             state.productsList = action.payload;
         },
-        openActivePopup: (state, action:PayloadAction<any>)=>{
-            state.activePopup = true;
-            state.activeProductsWindow = action.payload.svg
-            state.activeProductsLabel = action.payload.label
-        },
-        closeActivePopup: (state)=>{
-            state.activePopup = !state.activePopup
+        renderProductModal: (state, action:PayloadAction<any>)=>{
+            state.activeProductsWindow = action.payload.icon
+            state.activeProductsCategory = action.payload.category
         },
     }
 })
 
 export default productsSlice.reducer;
-
 export const {
     fetchProducts,
-    closeActivePopup,
-    openActivePopup
+    renderProductModal
 } = productsSlice.actions

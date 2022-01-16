@@ -1,70 +1,60 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { nanoid } from "@reduxjs/toolkit";
 import { Row, Col, Collapse } from 'antd';
-import * as AiIcons from "react-icons/ai";
+import { AiOutlineDown } from "react-icons/ai";
 import cn from 'classnames'
-import { ProductsData } from "../../resourse/ProductsData";
-import { fetchProducts } from "../../slices/productsSlice";
-import Product from "../../components/products/product";
-import ProductModal from "../../components/modal/productModal";
-import '../../pages/Products/Product.scss'
+
+import { fetchProducts} from "../../slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { IProduct } from "../../models/IProduct";
+import { ProductsData } from "../../resourse/ProductsData";
+
+import Product from "../../components/products/product";
+import Modal from "../../components/modal/Modal";
+import ProductModal from "../../components/modal/productModal/productModal";
+import '../../pages/Products/Product.scss'
 
 const Products = () => {
 
     const dispatch = useAppDispatch()
-    dispatch(fetchProducts(ProductsData));
-    const product: typeof ProductsData = useAppSelector(state => state.products.productsList)
+    const { activeProductsCategory } = useAppSelector( state => state.products)
+    const productsList  = useAppSelector(state => state.products.productsList)
+
     const { Panel } = Collapse;
 
-    const renderProducts = (array:Array<object>, label: string) => {
 
-        const classez = cn('products-wrapper', {
-            "meat": label === "Meat",
-            "dairy": label === "Dairy Products",
-            "vegetable": label === "Vegetables",
-            "fruit": label === "Fruits",
-            "sweets": label === "Sweets",
-            "fastfood": label === "Fastfood",
-            "bakery": label === "Bakery",
-            "different": label === "Different",
-        })
+    useEffect(()=>{
+        dispatch(fetchProducts(ProductsData.data.categories));
+    }, [dispatch])
 
-        const products = array.map((item:any) => {
-            return <Col key={nanoid()}> <Product  productName={item.name} label={label} icon={item.icon}/> </Col>
-        })
 
+    const modalClasses = cn('products-modal', activeProductsCategory)
+    const  renderAllProduct = productsList.map( item => {
+        const classes = cn('products-wrapper', item.category)
         return (
-            <div className={classez}>
+            <div key={nanoid()} className={classes}>
                 <Collapse accordion>
-                    <Panel showArrow={false} header={<div className={'products-header'}>{label}<AiIcons.AiOutlineDown/></div>}  key={nanoid()}>
+                    <Panel showArrow={false} header={<div className={'products-header'}>{item.label}<AiOutlineDown/></div>}  key={nanoid()}>
                         <Row justify={"space-around"} gutter={[10, 10]}>
-                            {products}
+                            {item.dataByCategory.map( productFromData => {
+                                return <Col key={nanoid()}> <Product  productName={productFromData.name} category={item.category} icon={productFromData.icon}/> </Col>
+                            })}
                         </Row>
                     </Panel>
                 </Collapse>
             </div>
         )
-    }
+    })
 
     return(
         <>
             <div data-testid='products' className='page-wrapper page-wrapper__products'>
-                {renderProducts(product.MeatData , "Meat")}
-                {renderProducts(product.DairyProductsData, 'Dairy Products')}
-                {renderProducts(product.VegetablesData, "Vegetables")}
-                {renderProducts(product.FruitsData, "Fruits")}
-                {renderProducts(product.BakeryData, "Bakery")}
-                {renderProducts(product.SweetsData, "Sweets")}
-                {renderProducts(product.etcProductsData, "Different")}
-                {renderProducts(product.FastFoodData, "Fastfood")}
+                {renderAllProduct}
             </div>
-            <ProductModal/>
+            <Modal modalClasses={modalClasses} >
+                <ProductModal/>
+            </Modal>
         </>
     )
-
-
 }
 
 export default Products

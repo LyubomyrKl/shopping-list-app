@@ -1,0 +1,15 @@
+@use 'src/app/App';
+
+
+.calories-page{
+  background-color: App.$vegetable ;
+  .calories-day{
+    margin-bottom: 50px;
+  }
+  .total-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 0 10px;
+  }
+}

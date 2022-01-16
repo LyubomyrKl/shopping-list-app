@@ -1,38 +1,72 @@
 import {nanoid} from "@reduxjs/toolkit";
-import { ICaloriesData } from "../models/ICaloriesData";
+import {ICaloriesData} from "../models/ICaloriesData";
 
 
-const caloriesData = {
-    data: {
-        days: [
+
+const caloriesData: ICaloriesData = {
+    "data": {
+        "days": [
             {
-                key: nanoid(),
-                name: 'John Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
+                "id": '1',
+                "products": [
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+
+                ]
             },
             {
-                key: nanoid(),
-                name: 'John Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
-                tags: ['nice', 'developer'],
-            },
+                "id": '2',
+                "products": [
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+                    {
+                        'key': nanoid(),
+                        "product": 'John Brown',
+                        "value": 32,
+                        "kcal": 324
+                    },
+                ]
+            }
         ],
 
-        columns: [
+        "columns": [
             {
-                title: 'Name',
-                dataIndex: 'name',
+                "title": 'Product',
+                "dataIndex": 'product',
             },
             {
-                title: 'Age',
-                dataIndex: 'age',
+                "title": 'Value',
+                "dataIndex": 'value',
             },
             {
-                title: 'Address',
-                dataIndex: 'address',
+                "title": 'KCAL',
+                "dataIndex": 'kcal',
             },
         ]
     }

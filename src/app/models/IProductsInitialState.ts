@@ -1,8 +1,7 @@
-import { ProductsData } from "../resourse/ProductsData";
+import {ICategory} from "./IProductData";
 
 export interface IProductsInitialState{
-    productsList : typeof ProductsData,
-    activePopup: boolean,
+    productsList : Array<ICategory>,
     activeProductsWindow: string,
-    activeProductsLabel: string,
+    activeProductsCategory: string,
 }

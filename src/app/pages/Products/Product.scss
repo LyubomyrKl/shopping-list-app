@@ -141,6 +141,15 @@
   }
 }
 
+.products-wrapper.drinks {
+  .product {
+    background-color: App.$drinks;
+  }
+  .ant-collapse-header{
+    background-color: App.$drinks;
+  }
+}
+
 .products-wrapper.different {
   .product {
     background-color: App.$different;

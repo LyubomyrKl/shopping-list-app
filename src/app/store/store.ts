@@ -1,15 +1,18 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import navbar from '../slices/navbarSlice'
-import products from '../slices/productsSlice'
-import shoppingList from '../slices/shoppnigListSlice'
-
+import navbar from '../slices/navbarSlice';
+import products from '../slices/productsSlice';
+import shoppingList from '../slices/shoppnigListSlice';
+import calories from "../slices/caloriesSlice";
+import modal from '../slices/modalSlice';
 
 
 const rootReducer = combineReducers({
   navbar,
   products,
-  shoppingList
-})
+  shoppingList,
+  calories,
+  modal
+});
 
 
 export const setupStore = () => {

@@ -1,18 +1,24 @@
 import React from 'react';
-import './product.scss'
-import { openActivePopup } from "../../slices/productsSlice";
+import { renderProductModal } from "../../slices/productsSlice";
+import { toggleActiveModal } from "../../slices/modalSlice";
 import { useAppDispatch } from "../../hooks/hooks";
 
 interface ProductProp {
     productName:string,
-    label: string,
+    category: string,
     icon: string
 }
 
-function Product({label, icon, productName}:ProductProp) {
+function Product({category, icon, productName}:ProductProp) {
     const dispatch = useAppDispatch()
+
+    const openProductModal = () => {
+        dispatch(toggleActiveModal());
+        dispatch(renderProductModal({icon, category}))
+    }
+
     return (
-        <div className='product' onClick={(e) => {  dispatch(openActivePopup({svg:icon, label: label}))}}>
+        <div className='product' onClick={openProductModal}>
            <div className="icon-container">
                <img className={'product-svg'}  src={`assets/products/${icon}`} alt={productName}/>
                <img className={'product-svg'}  src={`assets/products/${icon}`} alt={productName}/>

@@ -1,31 +1,32 @@
 import {createSlice, Draft, nanoid, PayloadAction} from "@reduxjs/toolkit";
-
+import {newShoppingListItem} from "../models/InewShoppinngListItem";
 interface shoppingListInitialState{
-    list: Array<object>;
+    list: Array<newShoppingListItem>;
 }
 
 const initialState: shoppingListInitialState = {
     list: [
         {
             id: nanoid(),
-            count: '1',
+            count: 1,
             measure: 'Kg',
             icon: 'chicken-breast.svg',
-            label: 'Meat'
+            category: 'meat'
         },
+
         {
             id: nanoid(),
-            count: '23',
+            count: 1,
             measure: 'Gram',
             icon: 'milk.svg',
-            label: "Dairy Products"
+            category: "dairy"
         },
         {
             id: nanoid(),
-            count: '3',
+            count: 1,
             measure: 'Quantity',
             icon: "bananas.svg",
-            label: "Fruits"
+            category: "fruit"
         },
     ],
 }
@@ -34,8 +35,9 @@ const shoppingListSlice = createSlice({
     name:"shoppingList",
     initialState,
     reducers: {
-        addListItem: (state:Draft<any>, {payload}:{payload:object} )=>{
-            state.list.push(payload)
+        addListItem: (state:Draft<any>, action )=>{
+          const existedObj = state.list.find( (obj: { icon: any; }) => obj.icon == action.payload.icon)git
+            existedObj ? existedObj.count += action.payload.count : state.list.push(action.payload)
         },
         deleteShoppingListItem: ( state ,action:PayloadAction<any>) => {
             //@ts-ignore
