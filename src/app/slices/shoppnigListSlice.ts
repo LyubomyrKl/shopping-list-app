@@ -36,7 +36,7 @@ const shoppingListSlice = createSlice({
     initialState,
     reducers: {
         addListItem: (state:Draft<any>, action )=>{
-          const existedObj = state.list.find( (obj: { icon: any; }) => obj.icon == action.payload.icon)git
+          const existedObj = state.list.find( (obj: { icon: any; }) => obj.icon == action.payload.icon)
             existedObj ? existedObj.count += action.payload.count : state.list.push(action.payload)
         },
         deleteShoppingListItem: ( state ,action:PayloadAction<any>) => {

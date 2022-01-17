@@ -8,6 +8,7 @@ const caloriesData: ICaloriesData = {
         "days": [
             {
                 "id": '1',
+                "date": '30.01.2021',
                 "products": [
                     {
                         'key': nanoid(),
@@ -38,6 +39,7 @@ const caloriesData: ICaloriesData = {
             },
             {
                 "id": '2',
+                "date": '31.01.2021',
                 "products": [
                     {
                         'key': nanoid(),

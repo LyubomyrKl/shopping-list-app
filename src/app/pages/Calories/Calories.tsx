@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Button, Input, Tag, Table} from "antd";
+import React, { useEffect } from "react";
+import {Button, Tag, Table} from "antd";
 import './Calories.scss'
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import caloriesData from "../../resourse/СaloriesData";
-import { fetchCaloriesData, setActiveDay } from "../../slices/caloriesSlice";
+import { fetchCaloriesData, setActiveDay, addDay } from "../../slices/caloriesSlice";
 import { AiOutlinePlus } from "react-icons/ai";
 import ProductModal from "../../components/modal/Modal";
 import { toggleActiveModal } from "../../slices/modalSlice";
@@ -11,6 +11,7 @@ import CaloriesModal from "../../components/modal/caloriesModal/caloriesModal";
 import {
     CheckCircleOutlined,
 } from '@ant-design/icons';
+import {nanoid} from "@reduxjs/toolkit";
 
 const Calories = () => {
 
@@ -35,6 +36,23 @@ const Calories = () => {
         return total
     }
 
+    const addDayHandler = () => {
+        const date = new Date()
+        const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()]
+        function getZero(num:number){
+            if(num >= 0 && num < 10){
+                return `0${num}`;
+            }else{
+                return num;
+            }
+        }
+        const obj = {
+            id: nanoid(),
+            date: `${day}.${getZero(month+1)}.${year}`,
+            products: [],
+        }
+        dispatch(addDay(obj))
+    }
 
     const divs = daysData.map( (item, index) => {
 
@@ -57,6 +75,7 @@ const Calories = () => {
         return (
             <div key={item.id}  className={'calories-day'}>
                 {/* div for adding handlers on table*/}
+                <h1>{item.date}</h1>
                 <div onClick={()=>{dispatch(setActiveDay(index))}}>
                     <Table  pagination={false} columns={columns} dataSource={item.products}/>
                 </div>
@@ -79,10 +98,10 @@ const Calories = () => {
     return(
         <div className="page-wrapper calories-page">
             {divs}
-            <Button ghost>Create day</Button>
-            <ProductModal modalClasses={'calories-modal'}>
-                <CaloriesModal/>
-            </ProductModal>
+            <Button onClick={addDayHandler} ghost>Create day</Button>
+                <ProductModal modalClasses={'calories-modal'}>
+                    <CaloriesModal/>
+                </ProductModal>
         </div>
     )
 }

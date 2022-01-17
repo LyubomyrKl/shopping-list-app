@@ -7,6 +7,7 @@ export interface ICaloriesProduct {
 
 export interface ICaloriesDay {
     id: string
+    date: string
     products: ICaloriesProduct[];
 }
 

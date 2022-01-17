@@ -23,6 +23,9 @@ const caloriesSlice = createSlice({
         setActiveDay: (state, action:PayloadAction<number>) => {
             state.activeDay = action.payload
         },
+        addDay: (state, action) => {
+            state.days.push(action.payload)
+        }
     }
 });
 
@@ -33,4 +36,5 @@ export const  {
     fetchCaloriesData,
     addProductToDay,
     setActiveDay,
+    addDay,
 } = caloriesSlice.actions;
