@@ -5,25 +5,26 @@ import { nanoid } from "@reduxjs/toolkit";
 import { useAppDispatch } from "../../../hooks/hooks";
 import { addProductToDay } from "../../../slices/caloriesSlice";
 import { toggleActiveModal } from "../../../slices/modalSlice";
+import { ICaloriesProduct } from "../../../models/ICaloriesData";
 
-const CaloriesModal = () => {
-    const [productName, setProductName] = useState('')
-    const [quantity, setQuantity] = useState(0)
-    const [kcal, setKcal] = useState(0)
+const CaloriesModal: React.FC = () => {
+
+    const [productName, setProductName] = useState<string>('')
+    const [quantity, setQuantity] = useState<number>(0)
+    const [kcal, setKcal] = useState<number>(0)
     const dispatch = useAppDispatch();
 
 
-    const productNameValidate = (value:string) => {
+    const productNameValidate = (value:string):void => {
         const regExp = /^[a-zA-Z\s]*$/
         if(value.match(regExp)){
             setProductName(value)
         }
-
     }
 
-    const addProduct = () => {
-        if(productName.length && quantity && kcal > 0){
-            const obj = {
+    const addProduct = ():void => {
+        if(productName.length && quantity && kcal >0){
+            const obj: ICaloriesProduct = {
                 key: nanoid(),
                 product: productName,
                 value: quantity,

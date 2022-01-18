@@ -59,5 +59,6 @@ describe('Navbar', () => {
         //  })
         // expect(menu).not.toHaveClass('active')
     })
-    
+
+    t
 });

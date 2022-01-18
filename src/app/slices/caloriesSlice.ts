@@ -1,8 +1,12 @@
 import { createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import { ICaloriesInitialState } from "../models/ICaloriesInitialState";
 import { ICaloriesProduct , ICaloriesDay} from "../models/ICaloriesData";
 
 
+interface ICaloriesInitialState {
+    days: Array<ICaloriesDay>,
+    activeDay: number,
+    activeModal: boolean
+}
 
 const initialState : ICaloriesInitialState = {
     days: [],
@@ -14,16 +18,16 @@ const caloriesSlice = createSlice({
     name: 'calories',
     initialState,
     reducers: {
-        fetchCaloriesData: (state:Draft<ICaloriesInitialState>, action:PayloadAction<Array<ICaloriesDay>>) => {
+        fetchCaloriesData: (state:Draft<ICaloriesInitialState>, action:PayloadAction<ICaloriesDay[]>) => {
             state.days = action.payload
         },
-        addProductToDay: ( state, action:PayloadAction<ICaloriesProduct>)=>{
+        addProductToDay: ( state:Draft<ICaloriesInitialState>, action:PayloadAction<ICaloriesProduct>)=>{
             state.days[state.activeDay].products.push(action.payload)
         },
-        setActiveDay: (state, action:PayloadAction<number>) => {
+        setActiveDay: (state:Draft<ICaloriesInitialState>, action:PayloadAction<number>) => {
             state.activeDay = action.payload
         },
-        addDay: (state, action) => {
+        addDay: (state:Draft<ICaloriesInitialState>, action:PayloadAction<ICaloriesDay>) => {
             state.days.push(action.payload)
         }
     }

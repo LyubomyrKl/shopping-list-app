@@ -11,15 +11,16 @@ import CaloriesModal from "../../components/modal/caloriesModal/caloriesModal";
 import {
     CheckCircleOutlined,
 } from '@ant-design/icons';
-import {nanoid} from "@reduxjs/toolkit";
+import { nanoid } from "@reduxjs/toolkit";
+import { ICaloriesDay, ICaloriesProduct } from "../../models/ICaloriesData";
 
-const Calories = () => {
+const Calories: React.FC = () => {
 
     const dispatch = useAppDispatch();
-    const {days, columns } = caloriesData.data
+    const { days, columns } = caloriesData.data
 
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchCaloriesData(days))
         dispatch(setActiveDay(days.length-2))
     }, [days, dispatch])
@@ -28,15 +29,15 @@ const Calories = () => {
     const daysData = useAppSelector( state => state.calories.days)
     const activeDay = useAppSelector( state => state.calories.activeDay)
 
-    const countTotalByPropertyName = (arr:Array<any>, propertyName:string = 'kcal') => {
+    const countTotalByKcal = (arr:ICaloriesProduct[]):number => {
         let total = 0;
         arr.forEach( item => {
-            total += item[propertyName];
+            total += item['kcal'];
         })
         return total
     }
 
-    const addDayHandler = () => {
+    const addDayHandler = ():void => {
         const date = new Date()
         const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()]
         function getZero(num:number){
@@ -46,7 +47,7 @@ const Calories = () => {
                 return num;
             }
         }
-        const obj = {
+        const obj:ICaloriesDay = {
             id: nanoid(),
             date: `${day}.${getZero(month+1)}.${year}`,
             products: [],
@@ -54,9 +55,9 @@ const Calories = () => {
         dispatch(addDay(obj))
     }
 
-    const divs = daysData.map( (item, index) => {
+    const divs = daysData.map((item, index) => {
 
-        const total = countTotalByPropertyName(item.products);
+        const total = countTotalByKcal(item.products);
         let status;
 
         switch (true){

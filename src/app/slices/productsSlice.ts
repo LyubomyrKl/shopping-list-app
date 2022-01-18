@@ -1,5 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProductsInitialState } from "../models/IProductsInitialState";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
+import { ICategory } from "../models/IProductData";
+
+interface IProductsInitialState{
+    productsList : ICategory[],
+    activeProductsWindow: string,
+    activeProductsCategory: string,
+}
 
 const initialState: IProductsInitialState = {
     productsList: [],
@@ -11,10 +17,10 @@ const productsSlice = createSlice({
     name:"products",
     initialState,
     reducers: {
-        fetchProducts: ( state, action:PayloadAction<any>  ) => {
+        fetchProducts: ( state:Draft<IProductsInitialState>, action:PayloadAction<ICategory[]>  ) => {
             state.productsList = action.payload;
         },
-        renderProductModal: (state, action:PayloadAction<any>)=>{
+        renderProductModal: (state:Draft<IProductsInitialState>, action:PayloadAction<{icon:string, category:string}>)=>{
             state.activeProductsWindow = action.payload.icon
             state.activeProductsCategory = action.payload.category
         },

@@ -1,6 +1,10 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, Draft} from "@reduxjs/toolkit";
 
-const initialModalState = {
+interface IInitialModalState{
+    activePopup: boolean
+}
+
+const initialModalState:IInitialModalState = {
     activePopup: false
 }
 
@@ -8,7 +12,7 @@ const modalSlice = createSlice({
     name:'modal',
     initialState: initialModalState,
     reducers: {
-        toggleActiveModal: (state)=>{
+        toggleActiveModal: (state:Draft<IInitialModalState>)=>{
             state.activePopup = !state.activePopup
         }
     }

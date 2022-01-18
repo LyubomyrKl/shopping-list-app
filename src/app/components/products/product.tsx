@@ -12,7 +12,7 @@ interface ProductProp {
 function Product({category, icon, productName}:ProductProp) {
     const dispatch = useAppDispatch()
 
-    const openProductModal = () => {
+    const openProductModal = ():void => {
         dispatch(toggleActiveModal());
         dispatch(renderProductModal({icon, category}))
     }

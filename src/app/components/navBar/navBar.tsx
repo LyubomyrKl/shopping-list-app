@@ -5,17 +5,17 @@ import { nanoid } from "@reduxjs/toolkit";
 
 import cn from "classnames";
 import SidebarData  from "../../resourse/SideBarData";
-import {changeActiveStatus, changeActivePage} from "../../slices/navbarSlice";
+import { changeActiveStatus, changeActivePage } from "../../slices/navbarSlice";
 import './navBar.scss'
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { useLocation } from "react-router-dom";
 
 
-const NavBar = () => {
-    const location = useLocation();
+const NavBar: React.FC= () => {
 
-    const culcPage = (pathname: string)=>{
-       let page;
+    const location = useLocation();
+    const culcPage = (pathname: string): string=>{
+       let page = '';
        switch (pathname){
            case '/': page = "ShoppingList";
                 break;
@@ -30,7 +30,7 @@ const NavBar = () => {
     const dispatch = useAppDispatch()
     const toggleSideBar = () => dispatch(changeActiveStatus());
     const sidebar = useAppSelector( state => state.navbar.menuActiveStatus)
-    const menuItems = SidebarData.map((item)=>{
+    const menuItems = SidebarData.map((item):JSX.Element => {
 
         return (
             <li key={nanoid()}

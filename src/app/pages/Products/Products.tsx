@@ -12,8 +12,9 @@ import Product from "../../components/products/product";
 import Modal from "../../components/modal/Modal";
 import ProductModal from "../../components/modal/productModal/productModal";
 import '../../pages/Products/Product.scss'
+import { ICategory,IProduct } from "../../models/IProductData";
 
-const Products = () => {
+const Products: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const { activeProductsCategory } = useAppSelector( state => state.products)
@@ -22,20 +23,20 @@ const Products = () => {
     const { Panel } = Collapse;
 
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(fetchProducts(ProductsData.data.categories));
     }, [dispatch])
 
 
     const modalClasses = cn('products-modal', activeProductsCategory)
-    const  renderAllProduct = productsList.map( item => {
+    const  renderAllProduct = productsList.map( (item:ICategory):JSX.Element => {
         const classes = cn('products-wrapper', item.category)
         return (
             <div key={nanoid()} className={classes}>
                 <Collapse accordion>
                     <Panel showArrow={false} header={<div className={'products-header'}>{item.label}<AiOutlineDown/></div>}  key={nanoid()}>
                         <Row justify={"space-around"} gutter={[10, 10]}>
-                            {item.dataByCategory.map( productFromData => {
+                            {item.dataByCategory.map( (productFromData: IProduct):JSX.Element => {
                                 return <Col key={nanoid()}> <Product  productName={productFromData.name} category={item.category} icon={productFromData.icon}/> </Col>
                             })}
                         </Row>

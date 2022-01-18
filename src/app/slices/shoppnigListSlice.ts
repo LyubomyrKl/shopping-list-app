@@ -1,10 +1,10 @@
 import {createSlice, Draft, nanoid, PayloadAction} from "@reduxjs/toolkit";
 import {newShoppingListItem} from "../models/InewShoppinngListItem";
-interface shoppingListInitialState{
+interface IShoppingListInitialState{
     list: Array<newShoppingListItem>;
 }
 
-const initialState: shoppingListInitialState = {
+const initialState: IShoppingListInitialState = {
     list: [
         {
             id: nanoid(),
@@ -35,12 +35,11 @@ const shoppingListSlice = createSlice({
     name:"shoppingList",
     initialState,
     reducers: {
-        addListItem: (state:Draft<any>, action )=>{
+        addListItem: (state:Draft<IShoppingListInitialState>, action:PayloadAction<newShoppingListItem> )=>{
           const existedObj = state.list.find( (obj: { icon: any; }) => obj.icon == action.payload.icon)
             existedObj ? existedObj.count += action.payload.count : state.list.push(action.payload)
         },
-        deleteShoppingListItem: ( state ,action:PayloadAction<any>) => {
-            //@ts-ignore
+        deleteShoppingListItem: ( state:Draft<IShoppingListInitialState> ,action:PayloadAction<string>) => {
             state.list = state.list.filter(item => item.id !== action.payload);
         }
     }

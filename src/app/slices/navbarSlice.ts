@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 
 interface navInitialState{
     activePage: string,
@@ -14,10 +14,10 @@ const navbarSlice = createSlice({
     name:"navbar",
     initialState,
     reducers: {
-        changeActiveStatus: (state) => {
+        changeActiveStatus: (state:Draft<navInitialState>) => {
             state.menuActiveStatus = !state.menuActiveStatus
         },
-        changeActivePage: (state, action:PayloadAction<string>) => {
+        changeActivePage: (state:Draft<navInitialState>, action:PayloadAction<string>) => {
             state.activePage = action.payload
         },
     },

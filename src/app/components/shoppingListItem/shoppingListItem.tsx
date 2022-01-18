@@ -3,13 +3,13 @@ import * as AiIcons from "react-icons/ai";
 import React from "react";
 import { newShoppingListItem } from "../../models/InewShoppinngListItem";
 
-interface Props {
+interface ShoppingListItemProps {
     product: newShoppingListItem,
-    onDelete: Function,
-    onEdit: Function
+    onDelete: (id: string) => void,
+    onEdit: (id: string) => void
 }
 
-const ShoppingListItem = ({product, onDelete, onEdit}: Props) => {
+const ShoppingListItem = ({product, onDelete, onEdit}: ShoppingListItemProps) => {
 
     const listItemClass = cn('shipping-list-item', product.category)
 

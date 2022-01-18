@@ -6,14 +6,16 @@ import { addListItem } from "../../../slices/shoppnigListSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import './producModal.scss'
 import { toggleActiveModal } from "../../../slices/modalSlice";
-const ProductModal = () => {
+
+
+const ProductModal:React.FC =() => {
 
     const dispatch = useAppDispatch()
-    const [measure, setMeasure] = useState('Kg')
-    const [countValue, setCountValue] = useState(1)
+    const [measure, setMeasure] = useState<string>('Kg')
+    const [countValue, setCountValue] = useState<number>(1)
     const { activeProductsWindow, activeProductsCategory } = useAppSelector( state => state.products)
 
-    const setProduct = () => {
+    const setProduct = ():void => {
         const newItem: newShoppingListItem = {
             count: countValue,
             measure: measure,
