@@ -1,7 +1,7 @@
  import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux'
-import { store } from "../store/store";
+import { setupStore } from "../store/store";
 import userEvent from "@testing-library/user-event";
 import {
     BrowserRouter as Router,
@@ -16,7 +16,7 @@ describe('Navbar', () => {
 
     test("Renders Navbar Compontents", () => {
         render(
-        <Provider store={store}>
+        <Provider store={setupStore()}>
             <Router>
                 <NavBar/>
             </Router>
@@ -27,7 +27,7 @@ describe('Navbar', () => {
 
     test('should navigate to page', ()=>{
         render(
-            <Provider store={store}>
+            <Provider store={setupStore()}>
                     <App/>
             </Provider>,
           )
@@ -53,12 +53,6 @@ describe('Navbar', () => {
         userEvent.click(open)
         expect(menu).toHaveClass('active')
         screen.debug()
-        // act(()=>{
-        //     let close = document.querySelector('#close-menu');
-        //     userEvent.click(close)
-        //  })
-        // expect(menu).not.toHaveClass('active')
+       
     })
-
-    t
 });

@@ -4,9 +4,10 @@ export interface IProduct {
 }
 
 export interface ICategory {
-    id: number;
-    category: string;
+    id: number,
+    category: string,
     label: string,
+    metrics: Array<string>,
     dataByCategory: IProduct[];
 }
 

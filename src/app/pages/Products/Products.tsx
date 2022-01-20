@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { Row, Col, Collapse } from 'antd';
+import {Row, Col, Collapse, Spin} from 'antd';
 import { AiOutlineDown } from "react-icons/ai";
 import cn from 'classnames'
 
@@ -22,11 +22,9 @@ const Products: React.FC = () => {
 
     const { Panel } = Collapse;
 
-
     useEffect(() => {
         dispatch(fetchProducts(ProductsData.data.categories));
     }, [dispatch])
-
 
     const modalClasses = cn('products-modal', activeProductsCategory)
     const  renderAllProduct = productsList.map( (item:ICategory):JSX.Element => {
@@ -46,6 +44,10 @@ const Products: React.FC = () => {
         )
     })
 
+    if(productsList.length === 0 ){
+        return <Spin tip="Loading..."/>
+    }
+
     return(
         <>
             <div data-testid='products' className='page-wrapper page-wrapper__products'>
@@ -56,6 +58,8 @@ const Products: React.FC = () => {
             </Modal>
         </>
     )
+
+
 }
 
 export default Products

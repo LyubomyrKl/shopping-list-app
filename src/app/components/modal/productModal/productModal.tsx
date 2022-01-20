@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, InputNumber, Select } from "antd";
+import { Button, InputNumber, Select, Spin } from "antd";
 import { newShoppingListItem } from "../../../models/InewShoppinngListItem";
 import { nanoid } from "@reduxjs/toolkit";
 import { addListItem } from "../../../slices/shoppnigListSlice";
@@ -8,12 +8,12 @@ import './producModal.scss'
 import { toggleActiveModal } from "../../../slices/modalSlice";
 
 
-const ProductModal:React.FC =() => {
+const ProductModal:React.FC = () => {
 
     const dispatch = useAppDispatch()
     const [measure, setMeasure] = useState<string>('Kg')
     const [countValue, setCountValue] = useState<number>(1)
-    const { activeProductsWindow, activeProductsCategory } = useAppSelector( state => state.products)
+    const { activeProductsWindow, activeProductsCategory, productsList } = useAppSelector( state => state.products )
 
     const setProduct = ():void => {
         const newItem: newShoppingListItem = {
@@ -28,8 +28,30 @@ const ProductModal:React.FC =() => {
         setCountValue(1)
     }
 
-
     const { Option } = Select;
+
+    const renderOption = () => {
+         const currentObj = productsList.find( obj => {
+             return obj.category === activeProductsCategory
+         })
+
+        // @ts-ignore
+
+        if(currentObj){
+            return(
+                <Select defaultOpen={true} defaultValue={currentObj.metrics[0]} onChange={(e)=>{ setMeasure(e)}}>
+                    {currentObj.metrics.map( (item:string, index) => {
+
+                            return <Option checked key={nanoid()} value={item}>{item}</Option>
+
+
+                    })}
+                </Select>
+            )
+        }
+
+    }
+
     return (
         <div className={"products-modal-popup"}>
             <div className="front">
@@ -38,11 +60,7 @@ const ProductModal:React.FC =() => {
             <div className="back">
                 <img className={'product-svg products-modal-svg'}  src={`assets/products/${activeProductsWindow}`}/>
                 <InputNumber onChange={(e:number)=>{setCountValue(e)}} min={1} defaultValue={countValue} />
-                <Select defaultValue={'Kg'} style={{ width: 120 }} onChange={(e)=>{ setMeasure(e)}}>
-                    <Option value="Gram">Gram</Option>
-                    <Option value="Quantity">Quantity</Option>
-                    <Option value="Liters">Liters</Option>
-                </Select>
+                {renderOption()}
                 <Button onClick={()=>{setProduct()}} ghost>TO LIST</Button>
             </div>
         </div>
@@ -50,3 +68,4 @@ const ProductModal:React.FC =() => {
 };
 
 export default ProductModal;
+

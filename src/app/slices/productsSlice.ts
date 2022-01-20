@@ -1,4 +1,4 @@
-import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { ICategory } from "../models/IProductData";
 
 interface IProductsInitialState{

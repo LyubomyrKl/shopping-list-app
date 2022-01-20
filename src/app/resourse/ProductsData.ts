@@ -7,6 +7,7 @@ export const ProductsData: IProductsData = {
                 "id": 1,
                 "category": "vegetable",
                 "label": 'Vegetable',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Сarrot",
@@ -22,6 +23,7 @@ export const ProductsData: IProductsData = {
                 "id": 2,
                 "category": "meat",
                 "label": 'Meat',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Breast",
@@ -112,6 +114,7 @@ export const ProductsData: IProductsData = {
                 'id': 3,
                 "category": "fruit",
                 "label": 'Fruit',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "bananas",
@@ -123,6 +126,7 @@ export const ProductsData: IProductsData = {
                 "id": 4,
                 "category": "sweets",
                 "label": 'Sweets',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Cookies",
@@ -134,6 +138,7 @@ export const ProductsData: IProductsData = {
                 "id": 5,
                 "category": "dairy",
                 "label": 'Dairy',
+                "metrics": ['Liters', 'Milliliters', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Milk",
@@ -141,10 +146,12 @@ export const ProductsData: IProductsData = {
                     },
                 ],
             },
+
             {
                 "id": 6,
                 "category": "fastfood",
                 "label": 'Fastfood,',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Noodle",
@@ -156,6 +163,7 @@ export const ProductsData: IProductsData = {
                 "id": 7,
                 "category": "bakery",
                 "label": 'Bakery',
+                "metrics": ['Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Eggs",
@@ -167,6 +175,7 @@ export const ProductsData: IProductsData = {
                 "id": 8,
                 "category": "drinks",
                 "label": 'Drinks',
+                "metrics": ['Liters', 'Milliliters', 'Quantity'],
                 "dataByCategory": [
 
                 ],
@@ -175,6 +184,7 @@ export const ProductsData: IProductsData = {
                 "id": 9,
                 "category": "different",
                 "label" : "Different",
+                "metrics": ['Liters', 'Milliliters', 'Kg', 'Gram', 'Quantity'],
                 "dataByCategory": [
                     {
                         "name": "Eggs",
